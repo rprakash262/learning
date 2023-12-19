@@ -22,11 +22,11 @@ function App() {
   console.log({store: useStore()})
 
   return (
-    <ThemeProvider theme={lightTheme}>
+    // <ThemeProvider theme={lightTheme}>
       <BrowserRouter>
         <Layout />
       </BrowserRouter>
-    </ThemeProvider>
+    // </ThemeProvider>
   )
 }
 

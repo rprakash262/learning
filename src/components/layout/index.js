@@ -8,8 +8,9 @@ import { Home } from '../../routes/Home';
 import { Courses } from '../../routes/Courses';
 import { TestSeries } from '../../routes/TestSeries';
 import { Blogs } from '../../routes/Blogs';
+import { Login } from '../../routes/Login';
 
-const pages = ['home', 'courses', 'test-series', 'blogs'];
+const pages = ['home', 'courses', 'test-series', 'blogs', 'login'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Layout = () => {
@@ -161,6 +162,7 @@ export const Layout = () => {
           <Route path="courses" element={<Courses />} />
           <Route path="test-series" element={<TestSeries />} />
           <Route path="blogs" element={<Blogs />} />
+          <Route path="login" element={<Login />} />
         </Routes>
       </div>
     </div>
