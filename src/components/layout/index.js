@@ -4,6 +4,7 @@ import { Box, Typography, AppBar, Toolbar, IconButton, Button, Menu, Tooltip, Av
 import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
 
+import '../../App.css';
 import { Home } from '../../routes/Home';
 import { Courses } from '../../routes/Courses';
 import { TestSeries } from '../../routes/TestSeries';
@@ -160,7 +161,14 @@ export const Layout = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <div style={{ width: "100%", height: "calc(100% - 69px)" }}>
+      <div
+        className="scrollbar"
+        style={{
+          width: "100%",
+          height: "calc(100% - 69px)",
+          overflowY: "scroll"
+        }}
+      >
         <Routes>
           <Route path="home" element={<Home />} />
           <Route path="courses" element={<Courses />} />

@@ -12,7 +12,7 @@ export const SnackBar = () => {
       setTimeout(() => {
         setBottom(-60)
         setHideSnackbar()
-      }, 5000)
+      }, 3500)
     } else {
       setBottom(-60)
     }

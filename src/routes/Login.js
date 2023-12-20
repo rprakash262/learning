@@ -120,7 +120,7 @@ export const Login = () => {
             <Button
               variant="text"
               onClick={() => setFormType(formType === "login" ? "signup" : "login")}>
-              {formType === "login" ? "SignUp Here" : "Login Here"}
+              {formType === "login" ? "SignUp" : "Login"}
             </Button>
           </Typography>
         </CardContent>
