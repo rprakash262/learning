@@ -9,8 +9,9 @@ import { Courses } from '../../routes/Courses';
 import { TestSeries } from '../../routes/TestSeries';
 import { Blogs } from '../../routes/Blogs';
 import { Login } from '../../routes/Login';
+import { SnackBar } from '../snackbar';
 
-const pages = ['home', 'courses', 'test-series', 'blogs', 'login'];
+const pages = ['home', 'courses', 'test-series', 'blogs'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Layout = () => {
@@ -33,7 +34,7 @@ export const Layout = () => {
   };
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -125,11 +126,14 @@ export const Layout = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              {/* <Tooltip title="Open settings"> */}
+                <Link style={{ textDecoration: "none", color: "#fff" }} to="/login">
+                  <Typography>Login</Typography>
+                </Link>
+                {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
+                </IconButton> */}
+              {/* </Tooltip> */}
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
@@ -165,6 +169,7 @@ export const Layout = () => {
           <Route path="login" element={<Login />} />
         </Routes>
       </div>
+      <SnackBar />
     </div>
   );
 }

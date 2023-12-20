@@ -1,10 +1,21 @@
 export const mainSlice = (set) => ({
-  sampleState: 'Hello world',
+  showSnackbar: false,
+  snackbarMsg: "",
+  snackbarMsgType: null,
 
-  setSampleState: (val) => set((state) => {
+  setShowSnackbar: (msg, msgType) => set((state) => {
     return {
       ...state,
-      sampleState: val
+      snackbarMsg: msg,
+      snackbarMsgType: msgType,
+      showSnackbar: true
+    }
+  }),
+
+  setHideSnackbar: () => set((state) => {
+    return {
+      ...state,
+      showSnackbar: false
     }
   })
 })
