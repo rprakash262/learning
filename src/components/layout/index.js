@@ -11,6 +11,8 @@ import { TestSeries } from '../../routes/TestSeries';
 import { Blogs } from '../../routes/Blogs';
 import { Login } from '../../routes/Login';
 import { SnackBar } from '../snackbar';
+import { useAuth } from '../../auth';
+import { authApi } from '../../api/auth';
 
 const pages = ['home', 'courses', 'test-series', 'blogs'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -18,6 +20,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 export const Layout = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const { user } = useAuth();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -88,9 +91,14 @@ export const Layout = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
+                  <Button
+                    key={page}
+                    // onClick={handleCloseNavMenu}
+                    sx={{ my: 2, display: 'block', textDecoration: "none" }}
+                  >
+                    <Link style={{ textDecoration: "none", }} to={`/${page}`}>{page}</Link>
+                    {/* {page} */}
+                  </Button>
                 ))}
               </Menu>
             </Box>
@@ -128,9 +136,15 @@ export const Layout = () => {
 
             <Box sx={{ flexGrow: 0 }}>
               {/* <Tooltip title="Open settings"> */}
-                <Link style={{ textDecoration: "none", color: "#fff" }} to="/login">
-                  <Typography>Login</Typography>
-                </Link>
+                {user ? (
+                  <IconButton onClick={authApi.signOut} sx={{ p: 0 }}>
+                    <Typography>Logout</Typography>
+                  </IconButton>
+                ) : (
+                  <Link style={{ textDecoration: "none", color: "#fff" }} to="/login">
+                    <Typography>Login</Typography>
+                  </Link>
+                )}
                 {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 </IconButton> */}

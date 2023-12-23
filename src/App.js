@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useStore } from './store';
 import { Layout } from './components/layout';
+import { AuthContextProvider, useAuth } from './auth'
 
 const lightTheme = createTheme({
   palette: {
@@ -24,7 +25,9 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <BrowserRouter>
-        <Layout />
+        <AuthContextProvider>
+          <Layout />
+        </AuthContextProvider>
       </BrowserRouter>
     </ThemeProvider>
   )

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Typography, Card, CardContent, Container, TextField, Stack, Button } from "@mui/material"
+import { Navigate, useNavigate } from 'react-router-dom';
+
 import { useStore } from "../store";
+import { authApi } from "../api/auth";
+import { useAuth } from "../auth";
 
 export const Login = () => {
   const { setShowSnackbar } = useStore();
@@ -9,6 +13,10 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  console.log({user})
 
   const login = () => {
     if (!email) {
@@ -20,7 +28,17 @@ export const Login = () => {
       return;
     }
 
-    console.log({email, password})
+    console.log({email, password});
+
+    authApi.signIn({ email, password }).then(({ error }) => {
+      if (error) {
+        console.log('Error signing in: ')
+        console.log(error)
+      }
+      else {
+        navigate('/home');
+      }
+    })
   }
 
   const signup = () => {
@@ -49,6 +67,7 @@ export const Login = () => {
   }
 
   return (
+    user ? <Navigate to="/home" /> :
     <Container maxWidth="xs" sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
       <Typography
         sx={{
