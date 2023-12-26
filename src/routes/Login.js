@@ -43,16 +43,16 @@ export const Login = () => {
         console.log(error)
       }
       else {
-        navigate('/home');
+        navigate('/profile');
       }
     })
   }
 
   const signup = () => {
-    if (!name) {
-      setShowSnackbar('Enter name', 'error');
-      return;      
-    }
+    // if (!name) {
+    //   setShowSnackbar('Enter name', 'error');
+    //   return;      
+    // }
     if (!email) {
       setShowSnackbar('Enter email', 'error');
       return;
@@ -107,7 +107,7 @@ export const Login = () => {
             <Typography align="center">
               {formType === "login" ? "Please signin using your email and password." : "Please fill all the details to register."}
             </Typography>
-            {formType === "signup" && (
+            {/* {formType === "signup" && (
               <TextField
                 required
                 id="name"
@@ -116,7 +116,7 @@ export const Login = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-            )}
+            )} */}
             <TextField
               required
               id="email"

@@ -26,7 +26,7 @@ export const initiatePayment = async function ({ orderAmount, currencyType, paym
       payment_capture: paymentCapture
     };
 
-    const { data } = await axios.post("http://localhost:5000/create-order", orderOptions);
+    const { data } = await axios.post("https://learning-server-gel6.onrender.com/create-order", orderOptions);
     const { msg, order } = data;
 
     if (msg === "error") {

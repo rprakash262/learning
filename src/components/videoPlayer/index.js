@@ -1,8 +1,9 @@
-import ReactPlayer from 'react-player'
-import { Stack, Slider } from '@mui/material';
-import { PlayArrow, Pause, VolumeOff, VolumeDown, VolumeUp } from '@mui/icons-material';
-import './styles.css';
 import { useState } from 'react';
+import ReactPlayer from 'react-player'
+import { Slider } from '@mui/material';
+import { PlayArrow, Pause, VolumeOff, VolumeUp, Fullscreen } from '@mui/icons-material';
+
+import './styles.css';
 
 export const VideoPlayer = ({ url }) => {
   const [volumeValue, setVolumeValue] = useState(1);
@@ -12,11 +13,12 @@ export const VideoPlayer = ({ url }) => {
   const [playedDuration, setPlayedDuration] = useState(0);
 
   const handleVideoProgress = (progData) => {
-    console.log({progData})
-    const {loadedSeconds, playedSeconds} = progData
+    const {loadedSeconds, playedSeconds} = progData;
+
     setLoadedDuration(loadedSeconds);
     setPlayedDuration(playedSeconds);
   }
+
   return (
     <div className="videoPlayer">
       <ReactPlayer
@@ -64,12 +66,12 @@ export const VideoPlayer = ({ url }) => {
           <div>
             {volumeValue > 0 ?
               <VolumeUp
-                style={{ color: "#fff" }}
+                style={{ color: "#fff", cursor: "pointer" }}
                 onClick={() => setVolumeValue(0)}
               /> :
               <VolumeOff
-                style={{ color: "#fff" }}
-                onClick={() => setVolumeValue(1)}
+                style={{ color: "#fff", cursor: "pointer" }}
+                onClick={() => setVolumeValue(0.3)}
               />}
           </div>
           <div style={{ width: "100px", paddingLeft: "10px" }}>
@@ -78,11 +80,15 @@ export const VideoPlayer = ({ url }) => {
               width="200px"
               aria-label="Volume"
               value={volumeValue}
+              min={0}
+              max={1}
+              step={0.1}
               onChange={e => setVolumeValue(e.target.value)}
             />
           </div>
         </div>
         <div className="rightSideControls">
+          <Fullscreen style={{ color: "#fff", cursor: "pointer" }} />
         </div>
       </div>
     </div>
