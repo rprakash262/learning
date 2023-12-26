@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { Box, Typography, AppBar, Toolbar, IconButton, Button, Menu, Tooltip, Avatar, Container, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
@@ -10,6 +10,7 @@ import { Courses } from '../../routes/Courses';
 import { TestSeries } from '../../routes/TestSeries';
 import { Blogs } from '../../routes/Blogs';
 import { Login } from '../../routes/Login';
+import { Profile } from '../../routes/Profile';
 import { SnackBar } from '../snackbar';
 import { useAuth } from '../../auth';
 import { authApi } from '../../api/auth';
@@ -21,6 +22,11 @@ export const Layout = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { user } = useAuth();
+  const navigate = useNavigate();
+console.log({user})
+  useEffect(() => {
+    navigate("/home")
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -137,9 +143,11 @@ export const Layout = () => {
             <Box sx={{ flexGrow: 0 }}>
               {/* <Tooltip title="Open settings"> */}
                 {user ? (
-                  <IconButton onClick={authApi.signOut} sx={{ p: 0 }}>
-                    <Typography>Logout</Typography>
-                  </IconButton>
+                  <Link style={{ textDecoration: "none", color: "#fff" }} to="/profile" sx={{ p: 0 }}>
+                     <IconButton sx={{ p: 0 }}>
+                      <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    </IconButton>
+                  </Link>
                 ) : (
                   <Link style={{ textDecoration: "none", color: "#fff" }} to="/login">
                     <Typography>Login</Typography>
@@ -189,6 +197,7 @@ export const Layout = () => {
           <Route path="test-series" element={<TestSeries />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
       </div>
       <SnackBar />

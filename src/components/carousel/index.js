@@ -12,7 +12,7 @@ export const Carousel = () => {
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      const width = containerElm?.current.clientWidth;
+      const width = containerElm?.current?.clientWidth;
 
       setContainerWidth(width);
     })
@@ -53,8 +53,9 @@ export const Carousel = () => {
           </div>
           <div className="carouselContent" style={{ width: containerWidth * 4, left }}>
             {slides.map((slide) => (
-              <div className="eachSlide" style={{ width: containerWidth, backgroundColor: "pink" }}>
-                {slide}
+              <div className="eachSlide" style={{ width: containerWidth }}>
+                <p>You can add images here.</p>
+                <p>Image {slide}</p>
               </div>
             ))}
           </div>

@@ -18,6 +18,13 @@ export const Login = () => {
 
   console.log({user})
 
+  const resetFields = () => {
+    setEmail("");
+    setPassword("");
+    setName("");
+    setConfirmPassword("");
+  }
+
   const login = () => {
     if (!email) {
       setShowSnackbar('Enter email', 'error');
@@ -63,7 +70,20 @@ export const Login = () => {
       return;
     }
 
-    console.log({name, email, password, confirmPassword})
+    console.log({name, email, password, confirmPassword});
+
+    authApi.signUp({ email, password }).then(({ error, data }) => {
+      if (error) {
+        console.log('Error signing up: ')
+        console.log(error)
+      }
+      else {
+        const { user, session } = data;
+        setShowSnackbar("A confirmation email has been sent to your email id.", 'success');
+        resetFields();
+        console.log("Sign up successful", {data});
+      }
+    })
   }
 
   return (
