@@ -1,13 +1,14 @@
 .videoPlayer {
-  width: 500px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
   position: relative;
+  background-color: #000;
 }
 
 .videoPlayerControls {
   position: absolute;
   bottom: 0px;
-  width: 500px;
+  width: 100%;
   height: 50px;
   background-color: black;
   display: flex;

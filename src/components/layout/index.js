@@ -7,18 +7,22 @@ import AdbIcon from '@mui/icons-material/Adb';
 import '../../App.css';
 import { Home } from '../../routes/Home';
 import { Courses } from '../../routes/Courses';
+import { Course } from '../../routes/Course';
 import { TestSeries } from '../../routes/TestSeries';
 import { Blogs } from '../../routes/Blogs';
 import { Login } from '../../routes/Login';
 import { Profile } from '../../routes/Profile';
+import { Player } from '../player';
 import { SnackBar } from '../snackbar';
 import { useAuth } from '../../auth';
 import { authApi } from '../../api/auth';
+import { useStore } from '../../store';
 
 const pages = ['home', 'courses', 'test-series', 'blogs'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Layout = () => {
+  const { selectedVideo } = useStore();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { user } = useAuth();
@@ -97,14 +101,14 @@ console.log({user})
                 }}
               >
                 {pages.map((page) => (
-                  <Button
-                    key={page}
-                    // onClick={handleCloseNavMenu}
-                    sx={{ my: 2, display: 'block', textDecoration: "none" }}
-                  >
-                    <Link style={{ textDecoration: "none", }} to={`/${page}`}>{page}</Link>
-                    {/* {page} */}
-                  </Button>
+                  <Link style={{ textDecoration: "none", color: "#fff" }} to={`/${page}`}>
+                    <Button
+                      key={page}
+                      sx={{ my: 2, display: 'block', textDecoration: "none" }}
+                    >
+                      {page}
+                    </Button>
+                  </Link>
                 ))}
               </Menu>
             </Box>
@@ -129,14 +133,14 @@ console.log({user})
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  // onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block', textDecoration: "none" }}
-                >
-                  <Link style={{ textDecoration: "none", color: "#fff" }} to={`/${page}`}>{page}</Link>
-                  {/* {page} */}
-                </Button>
+                <Link style={{ textDecoration: "none", color: "#fff" }} to={`/${page}`}>
+                  <Button
+                    key={page}
+                    sx={{ my: 2, color: 'white', display: 'block', textDecoration: "none" }}
+                  >
+                    {page}
+                  </Button>
+                </Link>
               ))}
             </Box>
 
@@ -194,12 +198,16 @@ console.log({user})
         <Routes>
           <Route path="home" element={<Home />} />
           <Route path="courses" element={<Courses />} />
+          <Route path="course" element={<Course />} />
           <Route path="test-series" element={<TestSeries />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile />} />
         </Routes>
       </div>
+      {selectedVideo && (
+        <Player />
+      )}
       <SnackBar />
     </div>
   );

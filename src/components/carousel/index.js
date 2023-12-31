@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import './styles.css';
 
-const slides = ['One', "Two", "Three", "Four"];
+import BannerImg1 from '../../data/banner1.jpg';
+import BannerImg2 from '../../data/banner2.jpg';
+import BannerImg3 from '../../data/banner3.jpg';
+import BannerImg4 from '../../data/banner4.jpg';
+
+const slides = [BannerImg1, BannerImg2, BannerImg3, BannerImg4];
 
 export const Carousel = () => {
   const containerElm = useRef(null);
@@ -55,7 +60,7 @@ export const Carousel = () => {
             {slides.map((slide) => (
               <div className="eachSlide" style={{ width: containerWidth }}>
                 <p>You can add images here.</p>
-                <p>Image {slide}</p>
+                {/* <p>Image {slide}</p> */}
               </div>
             ))}
           </div>

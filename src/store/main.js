@@ -2,6 +2,8 @@ export const mainSlice = (set) => ({
   showSnackbar: false,
   snackbarMsg: "",
   snackbarMsgType: null,
+  selectedCourseId: null,
+  selectedVideo: null,
 
   setShowSnackbar: (msg, msgType) => set((state) => {
     return {
@@ -16,6 +18,20 @@ export const mainSlice = (set) => ({
     return {
       ...state,
       showSnackbar: false
+    }
+  }),
+
+  setSelectedCourseId: (id) => set((state) => {
+    return {
+      ...state,
+      selectedCourseId: id
+    }
+  }),
+
+  setSelectedVideo: (video) => set((state) => {
+    return {
+      ...state,
+      selectedVideo: video
     }
   })
 })

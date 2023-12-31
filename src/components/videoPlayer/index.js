@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player'
 import { Slider } from '@mui/material';
 import { PlayArrow, Pause, VolumeOff, VolumeUp, Fullscreen } from '@mui/icons-material';
@@ -11,6 +11,9 @@ export const VideoPlayer = ({ url }) => {
   const [videoDuration, setVideoDuration] = useState(0);
   const [loadedDuration, setLoadedDuration] = useState(0);
   const [playedDuration, setPlayedDuration] = useState(0);
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const parentElm = useRef(null);
 
   const handleVideoProgress = (progData) => {
     const {loadedSeconds, playedSeconds} = progData;
@@ -19,14 +22,22 @@ export const VideoPlayer = ({ url }) => {
     setPlayedDuration(playedSeconds);
   }
 
+  useEffect(() => {
+    const w = parentElm?.current.clientWidth;
+    const h = parentElm?.current.clientHeight;
+    setWidth(w);
+    setHeight(h);
+    console.log({width})
+  }, [parentElm?.current])
+
   return (
-    <div className="videoPlayer">
+    <div className="videoPlayer" ref={parentElm}>
       <ReactPlayer
         playing={playing}
         volume={volumeValue}
         controls={false}
-        width="500px"
-        height="350px"
+        width={width}
+        height={height}
         progressInterval={1000}
         onDuration={(duration) => setVideoDuration(duration)}
         onProgress={(progData) => handleVideoProgress(progData)}
