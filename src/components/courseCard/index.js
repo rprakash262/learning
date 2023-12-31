@@ -58,12 +58,7 @@ export const CourseCard = ({
       </CardContent>
       <CardActions>
         <Button onClick={viewCourse} size="small">
-          <Link
-            to="/course"
-            style={{ textDecoration: "none", color: primaryColor }}
-          >
-            View Course
-          </Link>
+          View Course
         </Button>
         <Button
           disabled={loadingPayment}

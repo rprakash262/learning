@@ -46,7 +46,6 @@ export const Course = () => {
     setLoadingPayment(false);
   };
 
-  console.log({ course, courseVideos });
   return (
     <Container
       maxWidth="xl"

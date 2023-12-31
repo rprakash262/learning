@@ -12,6 +12,7 @@ export const TestSeriesCard = ({
   description,
   tags,
   subject,
+  nQuestions,
   price,
   url,
   solutionUrl,
@@ -42,6 +43,7 @@ export const TestSeriesCard = ({
         </div>
         <Typography variant="h6">{title}</Typography>
         <Typography variant="caption" display="block">Subject: {subject}</Typography>
+        <Typography variant="caption" display="block">No. of Questions: {nQuestions}</Typography>
         <Typography variant="caption" display="block">Price: Rs. {price}</Typography>
         <Typography variant="body2" mt={1}>{description}</Typography>
         <div style={{ marginTop: "10px" }}>
@@ -54,6 +56,11 @@ export const TestSeriesCard = ({
         <Link href={url} target="_blank">
           <Button size="small">          
             Download
+          </Button>
+        </Link>
+        <Link href={solutionUrl} target="_blank">
+          <Button size="small">          
+            Download Solution
           </Button>
         </Link>
         <Button

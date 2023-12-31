@@ -27,7 +27,7 @@ export const Layout = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { user } = useAuth();
   const navigate = useNavigate();
-console.log({user})
+
   useEffect(() => {
     navigate("/home")
   }, []);

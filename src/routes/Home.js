@@ -115,6 +115,7 @@ export const Home = () => {
                   description={testSeries.description}
                   tags={testSeries.tags}
                   subject={testSeries.subject}
+                  nQuestions={testSeries.n_questions}
                   price={testSeries.price}
                   url={testSeries.url}
                   solutionUrl={testSeries.solution_url}

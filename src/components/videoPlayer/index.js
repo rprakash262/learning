@@ -27,7 +27,6 @@ export const VideoPlayer = ({ url }) => {
     const h = parentElm?.current.clientHeight;
     setWidth(w);
     setHeight(h);
-    console.log({width})
   }, [parentElm?.current])
 
   return (

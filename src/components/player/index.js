@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import { VideoPlayer } from "../videoPlayer";

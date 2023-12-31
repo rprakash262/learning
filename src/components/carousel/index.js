@@ -45,7 +45,6 @@ export const Carousel = () => {
     setActiveSlideIndex(activeSlideIndex - 1)
   }
 
-  console.log({containerElm: containerElm.current, containerWidth, windowWidth: window.innerWidth})
   return (
     <div className="carouselContainer" ref={containerElm}>
       {containerWidth > 0 && (
